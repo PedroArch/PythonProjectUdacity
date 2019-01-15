@@ -108,17 +108,27 @@ class ReflectPlayer(Player):
 
 
 # Jogador joga a cada rodada uma tipo diferente
-# sem repetir e de forma aleatória
 class CyclePlayer(Player):
-
     def __init__(self):
-        self.left_moves = ["scissors", "rock", "paper"]
-
+        self.cycleplayer_move = ""
+        self.index = 0
     def move(self):
-        cycleplayer_move = random.choice(self.left_moves)
-        self.left_moves.remove(cycleplayer_move)
-        return cycleplayer_move
-
+        if self.cycleplayer_move == "":
+            self.index = random.randint(0, 2)
+            self.cycleplayer_move =  moves[self.index]
+            if self.index == 2:
+                self.index = 0
+            else:
+                self.index += 1
+            return self.cycleplayer_move
+        elif self.cycleplayer_move == moves[2]:
+            self.index = 1
+            self.cycleplayer_move = moves[0]
+            return self.cycleplayer_move
+        else:
+            self.cycleplayer_move = moves[self.index]
+            self.index += 1
+            return self.cycleplayer_move
 
 if __name__ == '__main__':
 
