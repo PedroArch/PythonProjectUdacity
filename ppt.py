@@ -113,10 +113,11 @@ class CyclePlayer(Player):
     def __init__(self):
         self.cycleplayer_move = ""
         self.index = 0
+
     def move(self):
         if self.cycleplayer_move == "":
             self.index = random.randint(0, 2)
-            self.cycleplayer_move =  moves[self.index]
+            self.cycleplayer_move = moves[self.index]
             if self.index == 2:
                 self.index = 0
             else:
@@ -131,7 +132,9 @@ class CyclePlayer(Player):
             self.index += 1
             return self.cycleplayer_move
 
+
 players = [RandomPlayer(), ReflectPlayer(), CyclePlayer()]
+
 
 def inicio():
 
@@ -148,6 +151,7 @@ def inicio():
             check = True
     rival = players[index - 1]
     return rival
+
 
 if __name__ == '__main__':
 
