@@ -7,6 +7,7 @@ import random
 
 moves = ['rock', 'paper', 'scissors']
 
+
 """The Player class is the parent class for all of the Players
 in this game"""
 
@@ -130,7 +131,25 @@ class CyclePlayer(Player):
             self.index += 1
             return self.cycleplayer_move
 
+players = [RandomPlayer(), ReflectPlayer(), CyclePlayer()]
+
+def inicio():
+
+    print("Bem vindo ao Rock, Paper and Scissors!\n\n")
+    print("Escolha um adversario, digitando o numero correspondente")
+    print("[1] Random Player\n[2] Reflect Player\n[3] Cycle Player\n")
+    check = False
+    index = ""
+    while check is False:
+        index = int(input("Escolha o numero e aperte ENTER: "))
+        if players[index - 1] not in players:
+            print("Por Favor entre com um numero válido")
+        else:
+            check = True
+    rival = players[index - 1]
+    return rival
+
 if __name__ == '__main__':
 
-    game = Game(HumanPlayer(), CyclePlayer())
+    game = Game(HumanPlayer(), inicio())
     game.play_game()
